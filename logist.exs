@@ -1,9 +1,9 @@
 defmodule Logist do
 	def lossFunc(m, p), do: [{:v, p[:b] + p[:w1] * m[:x] + p[:w2] * m[:y]}, {:mp, m}, {:pr, p}]
 	def mexp(m), do: [{:v, :math.exp(-m[:v])}, {:mp, m[:mp]}, {:pr, m[:pr]}]
-	def countUp(m), do:	[{:v, m[:v] + 1}, {:mp, m[:mp]}, {:pr, m[:pr]}] 
+	def countUp(m), do: [{:v, m[:v] + 1}, {:mp, m[:mp]}, {:pr, m[:pr]}] 
 	def reciproCal(m), do: [{:v, 1.0 / m[:v]}, {:mp, m[:mp]}, {:pr, m[:pr]}]
-	def renewFunc(m), do:	[{:v, (1.0 - m[:mp][:t]) * m[:v] - m[:mp][:t] * (1.0 - m[:v])}, {:mp, m[:mp]}, {:pr, m[:pr]}]
+	def renewFunc(m), do: [{:v, (1.0 - m[:mp][:t]) * m[:v] - m[:mp][:t] * (1.0 - m[:v])}, {:mp, m[:mp]}, {:pr, m[:pr]}]
 	def dmul(m, a), do: [{:v, m[:v] * a}, {:mp, m[:mp]}, {:pr, m[:pr]}]
 	def renewv(m), do: [{:b, m[:v] * 1.0}, {:w1, m[:v] * m[:mp][:x]}, {:w2, m[:v] * m[:mp][:y]}, {:pr, m[:pr]}]
 	def vsub(v), do: [{:b, v[:pr][:b] - v[:b]}, {:w1, v[:pr][:w1] - v[:w1]}, {:w2, v[:pr][:w2] - v[:w2]}]
